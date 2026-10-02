@@ -1,11 +1,8 @@
-@extends('layout')
-
-@section('title', 'My Notes')
-
-@section('content')
-    <h1>My Notes</h1>
-    <p><a href="{{ route('notes.create') }}">+ Add a note</a></p>
-
+<x-layout title="My Notes">
+    <div>
+        <h1>All Note Notes</h1>
+        <p><a href="{{ route('notes.create') }}">+ Add a note</a></p>
+    </div>
     @forelse ($notes as $note)
         <div>
             <h3>{{ $note->title }}</h3>
@@ -23,4 +20,4 @@
     @empty
         <p>No notes yet. Add your first one!</p>
     @endforelse
-@endsection
+</x-layout>
