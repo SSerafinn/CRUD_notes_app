@@ -1,23 +1,13 @@
 <x-layout title="My Notes">
-    <div>
-        <h1>All Note Notes</h1>
-        <p><a href="{{ route('notes.create') }}">+ Add a note</a></p>
+    <div class="flex items-center justify-between mb-4">
+        <h1 class="text-2xl font-bold">All Notes</h1>
+        <a href="{{ route('notes.create') }}"
+        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">+ Add Note</a>
     </div>
+ 
     @forelse ($notes as $note)
-        <div>
-            <h3>{{ $note->title }}</h3>
-            <p>{{ $note->body }}</p>
-
-            <a href="{{ route('notes.edit', $note) }}">Edit</a>
-
-            <form action="{{ route('notes.destroy', $note) }}" method="POST"
-                  onsubmit="return confirm('Delete this note?')">
-                @csrf
-                @method('DELETE')
-                <button type="submit">Delete</button>
-            </form>
-        </div>
+        <x-note-card :note="$note" />
     @empty
-        <p>No notes yet. Add your first one!</p>
+        <p class="text-gray-500">No notes yet. Add your first one!</p>
     @endforelse
 </x-layout>
